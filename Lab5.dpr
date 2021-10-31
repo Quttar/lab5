@@ -1,13 +1,13 @@
 program lab5;
 
-uses windows,messages, {интерфейсы к системным DLL}
-     sysUtils; {Служебные функции Дельфи для форматирования строк и т.д.}
+uses windows,messages, {ГЁГ­ГІГҐГ°ГґГҐГ©Г±Г» ГЄ Г±ГЁГ±ГІГҐГ¬Г­Г»Г¬ DLL}
+     sysUtils; {Г‘Г«ГіГ¦ГҐГЎГ­Г»ГҐ ГґГіГ­ГЄГ¶ГЁГЁ Г„ГҐГ«ГјГґГЁ Г¤Г«Гї ГґГ®Г°Г¬Г ГІГЁГ°Г®ГўГ Г­ГЁГї Г±ГІГ°Г®ГЄ ГЁ ГІ.Г¤.}
 
 function WndProc(hWnd: THandle; Msg: integer;
                  wParam: longint; lParam: longint): longint;
                  stdcall; forward;
 
-var xOffset:integer; //Фактически это статические переменные
+var xOffset:integer; //Г”Г ГЄГІГЁГ·ГҐГ±ГЄГЁ ГЅГІГ® Г±ГІГ ГІГЁГ·ГҐГ±ГЄГЁГҐ ГЇГҐГ°ГҐГ¬ГҐГ­Г­Г»ГҐ
     yOffset:integer;
     timeStamp:longword;
     leftButtonPressed:bool;
@@ -21,7 +21,7 @@ var xOffset:integer; //Фактически это статические переменные
 
     colorTable: array[0..7] of COLORREF;
 
-procedure WinMain; {Основной цикл обработки сообщений}
+procedure WinMain; {ГЋГ±Г­Г®ГўГ­Г®Г© Г¶ГЁГЄГ« Г®ГЎГ°Г ГЎГ®ГІГЄГЁ Г±Г®Г®ГЎГ№ГҐГ­ГЁГ©}
   const szClassName='Shablon';
   var   wndClass:TWndClassEx;
         hWnd: THandle;
@@ -45,30 +45,30 @@ begin
 
   hwnd:=CreateWindowEx(
          0,
-         szClassName, {имя класса окна}
-         'Paint Lite',    {заголовок окна}
-         ws_overlappedWindow,     {стиль окна}
+         szClassName, {ГЁГ¬Гї ГЄГ«Г Г±Г±Г  Г®ГЄГ­Г }
+         'Paint Lite',    {Г§Г ГЈГ®Г«Г®ГўГ®ГЄ Г®ГЄГ­Г }
+         ws_overlappedWindow,     {Г±ГІГЁГ«Гј Г®ГЄГ­Г }
          cw_useDefault,           {Left}
          cw_useDefault,           {Top}
          800,                     {Width}
          800,                     {Height}
-         0,                       {хэндл родительского окна}
-         0,                       {хэндл оконного меню}
-         hInstance,               {хэндл экземпляра приложения}
-         nil);                    {параметры создания окна}
+         0,                       {ГµГЅГ­Г¤Г« Г°Г®Г¤ГЁГІГҐГ«ГјГ±ГЄГ®ГЈГ® Г®ГЄГ­Г }
+         0,                       {ГµГЅГ­Г¤Г« Г®ГЄГ®Г­Г­Г®ГЈГ® Г¬ГҐГ­Гѕ}
+         hInstance,               {ГµГЅГ­Г¤Г« ГЅГЄГ§ГҐГ¬ГЇГ«ГїГ°Г  ГЇГ°ГЁГ«Г®Г¦ГҐГ­ГЁГї}
+         nil);                    {ГЇГ Г°Г Г¬ГҐГІГ°Г» Г±Г®Г§Г¤Г Г­ГЁГї Г®ГЄГ­Г }
 
-  ShowWindow(hwnd,sw_Show);  {отобразить окно}
-  updateWindow(hwnd);   {послать wm_paint оконной процедуре, прорисовав
-                         окно минуя очередь сообщений (необязательно)}
+  ShowWindow(hwnd,sw_Show);  {Г®ГІГ®ГЎГ°Г Г§ГЁГІГј Г®ГЄГ­Г®}
+  updateWindow(hwnd);   {ГЇГ®Г±Г«Г ГІГј wm_paint Г®ГЄГ®Г­Г­Г®Г© ГЇГ°Г®Г¶ГҐГ¤ГіГ°ГҐ, ГЇГ°Г®Г°ГЁГ±Г®ГўГ Гў
+                         Г®ГЄГ­Г® Г¬ГЁГ­ГіГї Г®Г·ГҐГ°ГҐГ¤Гј Г±Г®Г®ГЎГ№ГҐГ­ГЁГ© (Г­ГҐГ®ГЎГїГ§Г ГІГҐГ«ГјГ­Г®)}
 
-  xOffset:=0; //Фактически это статические переменные
+  xOffset:=0; //Г”Г ГЄГІГЁГ·ГҐГ±ГЄГЁ ГЅГІГ® Г±ГІГ ГІГЁГ·ГҐГ±ГЄГЁГҐ ГЇГҐГ°ГҐГ¬ГҐГ­Г­Г»ГҐ
   yOffset:=0;
   timeStamp:=0;
 
-  while GetMessage(msg,0,0,0) do begin {получить очередное сообщение}
-    TranslateMessage(msg);   {Windows транслирует сообщения от клавиатуры}
-    DispatchMessage(msg);    {Windows вызовет оконную процедуру}
-  end; {выход по wm_quit, на которое GetMessage вернет FALSE}
+  while GetMessage(msg,0,0,0) do begin {ГЇГ®Г«ГіГ·ГЁГІГј Г®Г·ГҐГ°ГҐГ¤Г­Г®ГҐ Г±Г®Г®ГЎГ№ГҐГ­ГЁГҐ}
+    TranslateMessage(msg);   {Windows ГІГ°Г Г­Г±Г«ГЁГ°ГіГҐГІ Г±Г®Г®ГЎГ№ГҐГ­ГЁГї Г®ГІ ГЄГ«Г ГўГЁГ ГІГіГ°Г»}
+    DispatchMessage(msg);    {Windows ГўГ»Г§Г®ГўГҐГІ Г®ГЄГ®Г­Г­ГіГѕ ГЇГ°Г®Г¶ГҐГ¤ГіГ°Гі}
+  end; {ГўГ»ГµГ®Г¤ ГЇГ® wm_quit, Г­Г  ГЄГ®ГІГ®Г°Г®ГҐ GetMessage ГўГҐГ°Г­ГҐГІ FALSE}
 end;
 
 function RgbPenFunction(x: integer):integer;
@@ -84,7 +84,7 @@ function WndProc(hWnd: THandle; Msg: integer; wParam: longint; lParam: longint):
   var ps:TPaintStruct;
       hdc:THandle;
       rect:TRect;
-      s:shortstring; //Строка как в Турбо-Паскале
+      s:shortstring; //Г‘ГІГ°Г®ГЄГ  ГЄГ ГЄ Гў Г’ГіГ°ГЎГ®-ГЏГ Г±ГЄГ Г«ГҐ
       moveFlag:boolean;
 
       hBrush:THandle;
@@ -99,31 +99,31 @@ begin
   case Msg of
     wm_create:
       begin
-        leftButtonPressed := false; //При старте программы левая кнопка мыши не нажата
+        leftButtonPressed := false; //ГЏГ°ГЁ Г±ГІГ Г°ГІГҐ ГЇГ°Г®ГЈГ°Г Г¬Г¬Г» Г«ГҐГўГ Гї ГЄГ­Г®ГЇГЄГ  Г¬Г»ГёГЁ Г­ГҐ Г­Г Г¦Г ГІГ 
 
-        //Таблица цветов
-        colorTable[0] := RGB(0, 192, 0); //Зеленный
-        colorTable[1] := RGB(192, 0, 0); //Красный
-        colorTable[2] := RGB(0, 0, 192); //Синий
-        colorTable[3] := RGB(240, 240, 0); //Желтый
-        colorTable[4] := RGB(0, 240, 240); //Голубой
-        colorTable[5] := RGB(255,192,203); //Розовый
-        colorTable[6] := RGB(139,0,255); //Феолетовый
-        colorTable[7] := RGB(255, 255, 255); //Белый
+        //Г’Г ГЎГ«ГЁГ¶Г  Г¶ГўГҐГІГ®Гў
+        colorTable[0] := RGB(0, 192, 0); //Г‡ГҐГ«ГҐГ­Г­Г»Г©
+        colorTable[1] := RGB(192, 0, 0); //ГЉГ°Г Г±Г­Г»Г©
+        colorTable[2] := RGB(0, 0, 192); //Г‘ГЁГ­ГЁГ©
+        colorTable[3] := RGB(240, 240, 0); //Г†ГҐГ«ГІГ»Г©
+        colorTable[4] := RGB(0, 240, 240); //ГѓГ®Г«ГіГЎГ®Г©
+        colorTable[5] := RGB(255,192,203); //ГђГ®Г§Г®ГўГ»Г©
+        colorTable[6] := RGB(139,0,255); //Г”ГҐГ®Г«ГҐГІГ®ГўГ»Г©
+        colorTable[7] := RGB(255, 255, 255); //ГЃГҐГ«Г»Г©
 
-        drawColorBrush := colorTable[1]; //Цвет кисти
-        drawColorPen := colorTable[0]; //Цвет пера
-        drawWidth := 100; //Толщина линии при рисовании
+        drawColorBrush := colorTable[1]; //Г–ГўГҐГІ ГЄГЁГ±ГІГЁ
+        drawColorPen := colorTable[0]; //Г–ГўГҐГІ ГЇГҐГ°Г 
+        drawWidth := 100; //Г’Г®Г«Г№ГЁГ­Г  Г«ГЁГ­ГЁГЁ ГЇГ°ГЁ Г°ГЁГ±Г®ГўГ Г­ГЁГЁ
 
-        rgbPenEnable := false; //Включено ли rgb перо
-        rgbPenIndex := 0; //Текущий цвет rgb пера
+        rgbPenEnable := false; //Г‚ГЄГ«ГѕГ·ГҐГ­Г® Г«ГЁ rgb ГЇГҐГ°Г®
+        rgbPenIndex := 0; //Г’ГҐГЄГіГ№ГЁГ© Г¶ГўГҐГІ rgb ГЇГҐГ°Г 
       end;
 
     {wm_paint:
       begin
         //SetWindowText(hwnd, PChar('TimeStamp = ' + intToStr(TimeStamp)));
 
-        hdc:=BeginPaint(hwnd,ps); //Удалить WM_PAINT из очереди и начать рисование
+        hdc:=BeginPaint(hwnd,ps); //Г“Г¤Г Г«ГЁГІГј WM_PAINT ГЁГ§ Г®Г·ГҐГ°ГҐГ¤ГЁ ГЁ Г­Г Г·Г ГІГј Г°ГЁГ±Г®ГўГ Г­ГЁГҐ
         //Ellipse(hdc, 300, 300, 500, 500);
 
         endPaint(hwnd,ps);
@@ -135,17 +135,17 @@ begin
 
         moveFlag:=true;
         case wParam of
-          vk_up: dec(yOffset); // Движение надписи стрелками
+          vk_up: dec(yOffset); // Г„ГўГЁГ¦ГҐГ­ГЁГҐ Г­Г Г¤ГЇГЁГ±ГЁ Г±ГІГ°ГҐГ«ГЄГ Г¬ГЁ
           vk_down: inc(yOffset);
           vk_left: dec(xOffset);
           vk_right: inc(xOffset);
-          vk_escape: begin xOffset:=0; yOffset:=0; end; // Вернуть по умолчанию
+          vk_escape: begin xOffset:=0; yOffset:=0; end; // Г‚ГҐГ°Г­ГіГІГј ГЇГ® ГіГ¬Г®Г«Г·Г Г­ГЁГѕ
         else
-          moveFlag:=false; // иначе надпись не двигалась
+          moveFlag:=false; // ГЁГ­Г Г·ГҐ Г­Г Г¤ГЇГЁГ±Гј Г­ГҐ Г¤ГўГЁГЈГ Г«Г Г±Гј
         end;
-        if moveFlag then begin // Если надпись двигалась
+        if moveFlag then begin // Г…Г±Г«ГЁ Г­Г Г¤ГЇГЁГ±Гј Г¤ГўГЁГЈГ Г«Г Г±Гј
           invalidaterect(hwnd,nil,true);
-          updateWindow(hwnd); //Перерисовать окно сейчас же, не дожидаясь опустошения очереди
+          updateWindow(hwnd); //ГЏГҐГ°ГҐГ°ГЁГ±Г®ГўГ ГІГј Г®ГЄГ­Г® Г±ГҐГ©Г·Г Г± Г¦ГҐ, Г­ГҐ Г¤Г®Г¦ГЁГ¤Г ГїГ±Гј Г®ГЇГіГ±ГІГ®ГёГҐГ­ГЁГї Г®Г·ГҐГ°ГҐГ¤ГЁ
         end;
       end;}
 
@@ -189,7 +189,7 @@ begin
 
     WM_MOUSEMOVE:
       if leftButtonPressed then begin
-        //Смена цвета для rgb пера
+        //Г‘Г¬ГҐГ­Г  Г¶ГўГҐГІГ  Г¤Г«Гї rgb ГЇГҐГ°Г 
         if (rgbPenEnable) then
         begin
           rgbPenIndex := (rgbPenIndex + 10) mod 1536;
@@ -221,20 +221,20 @@ begin
       begin
 
 
-        //Цвет пера
+        //Г–ГўГҐГІ ГЇГҐГ°Г 
         if ((wParam >= byte('1')) and (wParam <= byte('8'))) then
         begin
-          rgbPenEnable := false; //Отключаем rgb перо
+          rgbPenEnable := false; //ГЋГІГЄГ«ГѕГ·Г ГҐГ¬ rgb ГЇГҐГ°Г®
           drawColorPen := colorTable[wParam - byte('1')];
         end;
 
-        //Цвет заливки
+        //Г–ГўГҐГІ Г§Г Г«ГЁГўГЄГЁ
         if ((wParam >= VK_F1) and (wParam <= VK_F8)) then
         begin
           drawColorBrush := colorTable[wParam - VK_F1];
         end;
 
-        //RGB перо
+        //RGB ГЇГҐГ°Г®
         if (wParam = byte('9')) then
         begin
             rgbPenEnable := true;
@@ -242,7 +242,7 @@ begin
 
       end;
     {wm_timer:
-      if timeStamp>0 then begin // Если время не идет, то не нужно перерисовывать
+      if timeStamp>0 then begin // Г…Г±Г«ГЁ ГўГ°ГҐГ¬Гї Г­ГҐ ГЁГ¤ГҐГІ, ГІГ® Г­ГҐ Г­ГіГ¦Г­Г® ГЇГҐГ°ГҐГ°ГЁГ±Г®ГўГ»ГўГ ГІГј
         invalidateRect(hwnd,nil,true);
       end;}
 
@@ -260,11 +260,10 @@ end;
 
 
 begin
-  //Комментарий beta
-  //Какой-то коммент
+  //ГЉГ®Г¬Г¬ГҐГ­ГІГ Г°ГЁГ© beta
+  //ГЉГ ГЄГ®Г©-ГІГ® ГЄГ®Г¬Г¬ГҐГ­ГІ
   //English comment
-  //Добавлен коммент
+  //Г„Г®ГЎГ ГўГ«ГҐГ­ ГЄГ®Г¬Г¬ГҐГ­ГІ
   //english comment
-  //коммент из программы
   WinMain;
 end.
