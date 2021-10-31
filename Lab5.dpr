@@ -265,5 +265,6 @@ begin
   //English comment
   //Äîáàâëåí êîììåíò
   //english comment
+  //another comment
   WinMain;
 end.
