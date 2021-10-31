@@ -262,6 +262,6 @@ end;
 begin
   //Комментарий beta
   //Какой-то коммент
-  //Еще один коммент
+  //English comment
   WinMain;
 end.
