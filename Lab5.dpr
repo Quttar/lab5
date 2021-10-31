@@ -267,5 +267,6 @@ begin
   //english comment
   //another comment
   //github comment
+  //github comment diff
   WinMain;
 end.
