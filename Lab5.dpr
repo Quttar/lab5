@@ -264,5 +264,6 @@ begin
   //Какой-то коммент
   //English comment
   //Добавлен коммент
+  //english comment
   WinMain;
 end.
