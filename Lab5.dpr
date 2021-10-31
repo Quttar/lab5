@@ -266,5 +266,6 @@ begin
   //Äîáàâëåí êîììåíò
   //english comment
   //another comment
+  //github comment
   WinMain;
 end.
